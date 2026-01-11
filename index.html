@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নাহিদ আল-আসাদ পিয়াস | কাব্য সংকলন</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Global Reset & Variables --- */
+        :root {
+            --primary-color: #2c3e50;     /* Dark Blue-Grey */
+            --accent-color: #008080;      /* Teal/Cyan - Stylish & Professional */
+            --bg-color: #ffffff;
+            --light-bg: #f4f6f8;
+            --border-color: #e2e8f0;
+            
+            /* Fonts - STRICTLY NO CURSIVE/BENT FONTS */
+            --heading-font: 'Tiro Bangla', serif; 
+            --body-font: 'Hind Siliguri', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-style: normal !important; /* Force non-italic everywhere */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            font-family: var(--body-font);
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3, h4 {
+            font-family: var(--heading-font);
+            color: var(--primary-color);
+            font-weight: 400; /* Tiro Bangla looks bold naturally */
+        }
+
+        h1 { font-size: 2.8rem; margin-bottom: 0.5em; }
+        h2 { font-size: 2rem; margin-bottom: 0.8em; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            margin-bottom: 15px;
+            color: #4a5568;
+            text-align: justify;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: var(--heading-font);
+            font-size: 1.6rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .nav-links button {
+            background: none;
+            border: none;
+            margin-left: 25px;
+            font-family: var(--body-font);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #718096;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-links button:hover, .nav-links button.active {
+            color: var(--accent-color);
+            background: rgba(0, 128, 128, 0.05);
+        }
+
+        /* --- Layout --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 80vh;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--light-bg);
+            border-radius: 15px;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-family: var(--body-font);
+        }
+
+        .btn-primary:hover {
+            background: #006666;
+        }
+
+        /* --- Grid System --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--accent-color);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+        }
+
+        .card-preview {
+            font-size: 0.95rem;
+            color: #718096;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 15px;
+        }
+
+        /* --- Single Poem View --- */
+        .single-view {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+            color: var(--accent-color);
+            font-weight: 600;
+            background: none;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .poem-container {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .poem-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .poem-meta {
+            color: #a0aec0;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .poem-body {
+            font-size: 1.2rem;
+            line-height: 2.2;
+            color: #2d3748;
+        }
+
+        /* --- About Section --- */
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .profile-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .profile-sidebar {
+            background: var(--light-bg);
+            padding: 40px;
+            text-align: center;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-content {
+            padding: 40px;
+        }
+
+        .avatar-placeholder {
+            width: 120px;
+            height: 120px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-family: var(--heading-font);
+            margin-bottom: 20px;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .info-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+        }
+
+        .info-label {
+            font-weight: 700;
+            color: var(--primary-color);
+            width: 140px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: white;
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 60px;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .profile-card { grid-template-columns: 1fr; }
+            .profile-sidebar { border-right: none; border-bottom: 1px solid var(--border-color); }
+            .poem-container { padding: 30px 20px; }
+            .nav-container { flex-direction: column; gap: 15px; }
+            .nav-links button { margin: 0 8px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <a onclick="router('home')" class="logo">নাহিদ আল-আসাদ পিয়াস</a>
+        <div class="nav-links">
+            <button onclick="router('home')" id="btn-home">হোম</button>
+            <button onclick="router('list')" id="btn-list">কবিতা সমগ্র</button>
+            <button onclick="router('about')" id="btn-about">জীবন বৃত্তান্ত</button>
+        </div>
+    </div>
+</nav>
+
+<div id="app" class="container">
+    </div>
+
+<footer>
+    <div class="container" style="padding: 0; min-height: auto;">
+        <p style="text-align: center;">© ২০২৬ নাহিদ আল-আসাদ পিয়াস | সর্বস্বত্ব সংরক্ষিত</p>
+        <p style="text-align: center; font-size: 0.85rem; margin-top: 5px;">নান্দনিকতা ও অনুভবের সংমিশ্রণ</p>
+    </div>
+</footer>
+
+<script>
+    // --- Data: 20 Poems ---
+    const poems = [
+        { id: 1, title: "স্মৃতি কথা", date: "২০ মে, ২০২৪", lines: ["অবেলায় ফিরে দেখা পুরনো সেই ধুলোবালি,", "মনের কোণে জমে আছে কালশিটে দাগ খালি।", "তুমি ছিলে বিকেলের রোদ, মেঘলা এই মনে,", "এখন শুধু বৃষ্টি ঝরে নিঃসঙ্গ এই ক্ষণে।", "জানিনা আজ কোন আকাশে ওড়াও তুমি ঘুড়ি,", "আমার আকাশ মেঘলা বড়, স্বপ্ন করে চুরি।"] },
+        { id: 2, title: "স্বপ্নের শহর", date: "১২ জুন, ২০২৪", lines: ["ইটের উপর ইট সাজানো এই যে এক ধাঁধাঁ,", "মানুষগুলো এখানে সব মায়ার জালে বাঁধা।", "শহরজুড়ে নিয়ন আলো, জৌলুস ভরা রাত,", "তবুও কেন একাকীত্বে হাত বাড়ায় হাত?", "কোলাহলের ভিড়ে আমি খুঁজি নিজের ছায়া,", "শহর জুড়ে শুধুই যেন মিথ্যে এক মায়া।"] },
+        { id: 3, title: "মাতৃভূমি", date: "১৬ ডিসেম্বর, ২০২৩", lines: ["সবুজ শস্যের শ্যামল ছায়া, নদীর কলতান,", "আমার দেশের মাঠের বাঁশিতে তোমার জয়গান।", "রক্তে কেনা লাল সবুজের ঐ যে পতাকখানি,", "মায়ের মুখের হাসিতে আমি শ্রেষ্ঠ সুখ জানি।", "পলিমাটির গন্ধে মাখা আমার এই দেশ,", "ভালোবাসি তোমায় আমি, নেই তো তার শেষ।"] },
+        { id: 4, title: "প্রথম প্রেম", date: "১৪ ফেব্রুয়ারি, ২০২৪", lines: ["হৃদস্পন্দনের প্রথম দোলা, অনুভবের শুরু,", "তোমায় দেখে থমকে যাওয়া, বুকটা দুরুদুরু।", "নাম না জানা সেই চিঠিতে লিখেছিলাম কথা,", "হারিয়ে গেছে সেই বসন্ত, রয়ে গেছে নীরবতা।", "স্মৃতির পাতায় আজও তুমি অমলিন এক ফুল,", "তোমায় ভালোবেসে আমি করিনি তো ভুল।"] },
+        { id: 5, title: "সময়ের স্রোত", date: "০৫ জানুয়ারি, ২০২৪", lines: ["সময় বহিয়া যায় আপন খেয়ালে,", "মানুষ হারায় তার মায়ার দেয়ালে।", "যাহা কিছু সত্য আজ, কাল তাহা ছায়া,", "দুনিয়ার রঙমঞ্চে সবটুকু মায়া।", "নদীর স্রোতের মত জীবন বয়ে যায়,", "পিছন ফিরে তাকালে শুধু হাহাকার শোনা যায়।"] },
+        { id: 6, title: "শ্রাবণ মেঘ", date: "১০ জুলাই, ২০২৪", lines: ["আকাশের কোণে ঐ ঘন কালো মেঘ,", "বাতাসে লেগেছে আজ চঞ্চল বেগ।", "মাটির বুক চিরে ঘ্রাণ ভেসে আসে,", "প্রকৃতি মেতেছে আজ আপন উল্লাসে।", "বৃষ্টির ছন্দে নাচে তৃলতা ও পাতা,", "তোমার আমার মাঝে আজ শুধুই নীরবতা।"] },
+        { id: 7, title: "একাকীত্ব", date: "২২ মে, ২০২৪", lines: ["এক ফালি চাঁদ আর এক আকাশ তারা,", "আমি যেন পথভুলে হয়ে গেছি দিশাহারা।", "বুকের বাম পাশে চিনচিনে ব্যথা,", "কাহারে বলিব মোর না বলা কথা?", "রাতের আঁধারে আমি নিজের সাথে বলি,", "কেন বা অকারণে স্মৃতির পথে চলি?"] },
+        { id: 8, title: "আশার আলো", date: "০২ মার্চ, ২০২৪", lines: ["আঁধার ঘুচবে জানি সুপ্রভাত হবে,", "নতুন সূর্য এসে হাসি ছড়াবে।", "ভয় কীসের তবে এই বিপথ কালে,", "জীবন সাজাবো আমি স্বপ্নের জালে।", "হতাশার মেঘ কেটে রোদ উঠবেই জানি,", "শুনবো আবার আমি বিজয়ের বাণী।"] },
+        { id: 9, title: "বিপ্লব", date: "২১ ফেব্রুয়ারি, ২০২৪", lines: ["রক্তে রাঙানো সেই একুশের গান,", "বীর বাঙালির দল দিয়েছে গো প্রাণ।", "ভাষার তরে যারা মরেছে লড়াইয়ে,", "তাগো তরে আজ মাথা নোয়াইয়ে।", "অন্যায় যেখানে দেখি প্রতিবাদ করি,", "সত্যের পতাকাটি শক্ত করে ধরি।"] },
+        { id: 10, title: "নীল আকাশ", date: "১৫ এপ্রিল, ২০২৪", lines: ["নীল দিগন্তে ঐ সাদা বক উড়ে যায়,", "মনের গহীনে আজ কি যে ছায়া পায়।", "শান্ত নদীটির তীরে বসে একা একা,", "ভাবি যদি তোমার পাইতাম দেখা।", "আকাশের বিশালতায় নিজেকে হারাই,", "তোমার স্মৃতির কাছে হাতটি বাড়াই।"] },
+        { id: 11, title: "অপেক্ষার প্রহর", date: "০৮ জুন, ২০২৪", lines: ["তোমার অপেক্ষায় কাটে নির্ঘুম রাত,", "কবে দিবে তুমি মোর হাতে তোমার হাত।", "বিবর্ণ এ জীবনে তুমি যদি আসো,", "তবে কি আমায় তুমি আবার ভালোবাসো?", "প্রহর গুনে গুনে দিন কেটে যায়,", "তবুও কেন মন তোমারে না পায়?"] },
+        { id: 12, title: "জীবন যুদ্ধ", date: "১৯ আগস্ট, ২০২৪", lines: ["লড়াইয়ের নামই তো ভাই জীবনটা এখানে,", "জিতিতে হইবে মোরে যে কোনোখানে।", "থামিলে চলিবে না পথ চলিতেই হইবে,", "তবেই তো মানুষ মোরে মনে রাখিবে।", "হার মানা হার নয়, সে তো শিক্ষা,", "বেঁচে থাকার তরে চাই নতুন দীক্ষা।"] },
+        { id: 13, title: "মানুষ", date: "২৭ সেপ্টেম্বর, ২০২৪", lines: ["সবার উপরে মানুষ সত্য তাহার উপরে নাই,", "ভুলে গেছি মোরা আজ কেন এই ভাই-ভাই।", "হানাহানি মারামারি ভুলে যদি আজ,", "করি তবে একসাথেই জগতের কাজ।", "ধর্ম বর্ণ নির্বিশেষে আমরা মানুষ,", "উড়াবো শান্তির সাদা এক ফানুস।"] },
+        { id: 14, title: "শরৎ সন্ধ্যা", date: "১২ অক্টোবর, ২০২৪", lines: ["কাশফুল দোলে ঐ বাতাসের হিল্লোলে,", "শুভ্রতা মেখেছে আজ মাঠের ঐ কোলে।", "গোধূলির আলোটি ম্লান হয়ে আসে,", "দিনের আলোটি যেন আঁধারেতে হাসে।", "নদীর পাড়ে বসে দেখি সূর্যাস্ত,", "মনটা কেন আজ বড়ই ব্যস্ত।"] },
+        { id: 15, title: "হৃদয়ের গান", date: "১৪ নভেম্বর, ২০২৪", lines: ["বুকের ভেতর বাজে সুর একলা যখন থাকি,", "তোমার ছবিখানা মনের ক্যানভাসে আঁকি।", "তুমি ছাড়া এ জীবন বড়ই নিঃস্ব,", "তুমি আছো বলেই সুন্দর মোর বিশ্ব।", "গানের সুরে সুরে তোমায় খুঁজে ফিরি,", "তুমি যে আমার মনের গহীন গিরি।"] },
+        { id: 16, title: "রক্তের অক্ষর", date: "২৬ মার্চ, ২০২৪", lines: ["স্বাধীনতা শব্দটি বড়ই প্রিয় নাম,", "বাঙালি দিয়েছে তার লক্ষ জীবনের দাম।", "বীর মুক্তিযোদ্ধার সেই শৌর্য বীর্য,", "বাঙালির ইতিহাসে এক অনন্য ধৈর্য।", "লাল সবুজের পতাকায় তাদের স্মৃতি রয়,", "তাদের ত্যাগের কথা যেনো বিশ্বময় হয়।"] },
+        { id: 17, title: "মায়ার বাঁধন", date: "৩০ মে, ২০২৪", lines: ["ছেড়ে যেতে মন সায় দেয় না কভু,", "এই যে পৃথিবী কত মায়ার যে প্রভু।", "সংসার সাগরে ভাসি তরীখানি নিয়া,", "কত শত স্মৃতি রয় বুকেতে বিঁধিয়া।", "যেতে হবে জানি তবু মায়া কাটে না,", "স্মৃতির পিছুটান কভুও হাটে না।"] },
+        { id: 18, title: "দৃষ্টিভ্রম", date: "০৯ জানুয়ারি, ২০২৪", lines: ["যাহা দেখি সব কি সত্য আসলে?", "মানুষ হারায় আজ মিথ্যারই কৌশলে।", "ভেতরের মানুষটা চেনা বড় দায়,", "মুখোশ পরে সবাই চলে যায়।", "চোখ যা দেখে তা সবসময় সত্যি নয়,", "মনের চোখ দিয়ে দেখলেই বিশ্ব জয়।"] },
+        { id: 19, title: "শেষ খেয়া", date: "১৫ ডিসেম্বর, ২০২৪", lines: ["দিন শেষে ঘাটে এসে ভিড়িল যে তরী,", "সময় হয়েছে মোর এবার বিদায় নেওয়ার তরে।", "পিছনে ফিরিয়া চাহি দেখি কত কী,", "ভাবিয়া পাই না আমি জীবনটা কী?", "পারাপারের কড়ি নেই মোর হাতে,", "কেমনে যাইব আমি ওপারের পথে?"] },
+        { id: 20, title: "শান্তি", date: "২০ ডিসেম্বর, ২০২৪", lines: ["একমুঠো রোদ আর শান্তির আশ্বাস,", "একটু খানি খোলা মনে লওয়া নিঃশ্বাস।", "দেষাদেষি ভুলে গড়ি সুন্দর পৃথিবী,", "মানুষের জয়গান গাহিবে যে কবি।", "যুদ্ধ নয়, চাই শান্তির পায়রা,", "হাসবে পৃথিবী, হাসবে সবাইরা।"] }
+    ];
+
+    // --- Core Functions ---
+    const app = document.getElementById('app');
+
+    function router(page, param = null) {
+        // Reset Active State
+        document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+        const btn = document.getElementById(`btn-${page}`);
+        if(btn) btn.classList.add('active');
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+
+        // Render Page
+        if (page === 'home') renderHome();
+        else if (page === 'list') renderList();
+        else if (page === 'about') renderAbout();
+        else if (page === 'poem') renderPoem(param);
+    }
+
+    function renderHome() {
+        app.innerHTML = `
+            <div class="hero">
+                <h1 style="color: var(--primary-color);">কবিতার ভুবন</h1>
+                <p>নাহিদ আল-আসাদ পিয়াস এর কবিতাগুচ্ছ। এখানে প্রতিটি শব্দ হৃদয়ের গভীর থেকে উৎসারিত, প্রতিটি পংক্তি অনুভবের এক অনন্য দলিল।</p>
+                <button onclick="router('list')" class="btn-primary">কবিতা পাঠ করুন</button>
+            </div>
+            
+            <h2 style="text-align: center; margin-bottom: 30px; font-size: 1.8rem;">সাম্প্রতিক কবিতাসমূহ</h2>
+            <div class="grid">
+                ${poems.slice(0, 3).map(cardTemplate).join('')}
+            </div>
+        `;
+    }
+
+    function renderList() {
+        app.innerHTML = `
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 10px;">কবিতা সমগ্র</h2>
+                <p style="text-align: center;">সর্বমোট ${poems.length} টি কবিতা</p>
+            </div>
+            <div class="grid">
+                ${poems.map(cardTemplate).join('')}
+            </div>
+        `;
+    }
+
+    function cardTemplate(poem) {
+        return `
+            <div class="card" onclick="router('poem', ${poem.id})">
+                <h3>${poem.title}</h3>
+                <div class="card-preview">
+                    ${poem.lines.slice(0, 2).join(' ')}...
+                </div>
+                <div class="card-footer">
+                    <span style="font-size: 0.8rem; color: #a0aec0;">${poem.date}</span>
+                    <span style="color: var(--accent-color); font-weight: 700; font-size: 0.9rem;">পড়ুন &rarr;</span>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderPoem(id) {
+        const poem = poems.find(p => p.id === id);
+        if (!poem) return router('list');
+
+        app.innerHTML = `
+            <div class="single-view">
+                <button onclick="router('list')" class="back-btn">&larr; ফিরে যান</button>
+                
+                <div class="poem-container">
+                    <h1 class="poem-title">${poem.title}</h1>
+                    <div class="poem-meta">
+                        ${poem.date} &bull; নাহিদ আল-আসাদ পিয়াস
+                    </div>
+                    
+                    <div class="poem-body">
+                        ${poem.lines.map(line => `<div>${line}</div>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderAbout() {
+        app.innerHTML = `
+            <div class="about-header">
+                <h1>জীবন বৃত্তান্ত</h1>
+                <p style="text-align: center;">কবি সম্পর্কে বিস্তারিত তথ্য</p>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-sidebar">
+                    <div class="avatar-placeholder">ক</div>
+                    <h2 style="font-size: 1.5rem; margin-bottom: 5px;">নাহিদ আল-আসাদ পিয়াস</h2>
+                    <span style="background: #e6fffa; color: var(--accent-color); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">কবি ও লেখক</span>
+                </div>
+                
+                <div class="profile-content">
+                    <h3 style="border-bottom: 2px solid var(--accent-color); display: inline-block; margin-bottom: 20px; padding-bottom: 5px;">ব্যক্তিগত তথ্য</h3>
+                    
+                    <table class="info-table">
+                        <tr>
+                            <td class="info-label">পূর্ণ নাম:</td>
+                            <td>নাহিদ আল-আসাদ পিয়াস</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">ঠিকানা:</td>
+                            <td>পূর্বধলা, নেত্রকোণা, বাংলাদেশ।</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">শিক্ষা:</td>
+                            <td>শিক্ষার্থী, জগতমনি।</td>
+                        </tr>
+                        <tr>
+                            <td class="info-label">পেশা/শখ:</td>
+                            <td>লেখালেখি, সাহিত্য চর্চা।</td>
+                        </tr>
+                    </table>
+
+                    <h3 style="border-bottom: 2px solid var(--accent-color); display: inline-block; margin-bottom: 20px; padding-bottom: 5px; margin-top: 30px;">সাহিত্য কর্ম ও পরিচিতি</h3>
+                    <p>
+                        নাহিদ আল-আসাদ পিয়াস নেত্রকোণা জেলার একজন উদীয়মান কবি। তিনি তার চারপাশের প্রকৃতি, মানুষের জীবন এবং অব্যক্ত অনুভূতিগুলোকে শব্দের মাধ্যমে ফুটিয়ে তোলেন।
+                    </p>
+                    <p>
+                        তিনি অনলাইনে <strong>'বাংলা কবিতা ডট কম'</strong> ওয়েবসাইটে নিয়মিত লেখালেখি করেন। সেখানে তিনি <span style="font-weight: 700; color: var(--accent-color);">nahid2006</span> নামে সুপরিচিত। তার লেখায় গ্রামীণ জীবনের সরলতা এবং আধুনিক চিন্তাধারার এক অপূর্ব সংমিশ্রণ লক্ষ্য করা যায়।
+                    </p>
+                </div>
+            </div>
+        `;
+    }
+
+    // Initialize
+    window.onload = () => router('home');
+
+</script>
+</body>
+</html>
